@@ -75,6 +75,8 @@ ejercicios indicados.
        - FALTA EL COMANDO -PERL (PREGUNTAR A L'ALBINO)
 
   * ¿Por qué es conveniente usar este formato (u otro parecido)?
+  
+  En este formato, los datos se almacenan en filas y columnas. Cada fila corresponde a una trama de la señal, y cada columna a cada uno de los coeficientes con los que se parametriza la trama. Esta distribución de la información, nos permite acceder muy facilmente a valores concretos de interés, como pueden ser una trama en concreto, el valor de una trama para un coeficiente concreto, etc...  
 
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales de predicción lineal
   (LPCC) en su fichero <code>scripts/wav2lpcc.sh</code>:
