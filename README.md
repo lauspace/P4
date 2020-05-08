@@ -36,10 +36,10 @@ ejercicios indicados.
   sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $LPC -l 240 -m $lpc_order > $base.lp
   
   sox - Es la abreviatura de Sound eXchange. Este comando se utiliza para manipular archivos de audio. Nos permite leer y escribir archivos con formato AU, WAV, MP3, entre otros. En el caso concreto de nuestra práctica, nos permite leer el archivo que queremos analizar (inputfile).  
-  Con "-t" indicamos el tipo de formato que queremos en el fichero de salida, en este caso, queremos un fichero sin cabecera (raw).  
-  Con "-e" indicamos cual será el tipo de datos a los que convertirá la señal de entrada. En nuestro caso a datos de tipo signed.  
-  Con "-b" indicamos el número de bits que tendran los datos a la salida. En nuestro caso 16 bits.  
-  Con "-" indicamos que el resultado se debe escribir en la salida estándar.
+       Con "-t" indicamos el tipo de formato que queremos en el fichero de salida, en este caso, queremos un fichero sin cabecera (raw).  
+       Con "-e" indicamos cual será el tipo de datos a los que convertirá la señal de entrada. En nuestro caso a datos de tipo signed.  
+       Con "-b" indicamos el número de bits que tendran los datos a la salida. En nuestro caso 16 bits.  
+       Con "-" indicamos que el resultado se debe escribir en la salida estándar.
   
   $X2X - El programa x2x permite la conversión entre distintos formatos de datos. Soporta múltiples tipos de datos como "-c" (char), "-s" (short), "-i" (int), "-l" (long) los cuales se definen en las opciones "+type1" y "+type2". En nuestro caso usamos "+sf" que corresponde a short (type1) float (type2). Dispone de otras opciones como "%format" (especifica el formato de la salida si el tipo 2 es ascii), "-r" (hace un redondeo del valor cuando un número real se sustituye por un entero) y "-o" (si los datos de la señal de entrada estan fuera del rango de los datos de salida, se recortan los de salida). Las dos últimas tienen false como valor por defecto.
   
