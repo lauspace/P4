@@ -35,19 +35,19 @@ ejercicios indicados.
   La línea del código que tenemos es la siguiente:  
   sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $LPC -l 240 -m $lpc_order > $base.lp
   
-  sox - Es la abreviatura de Sound eXchange. Este comando se utiliza para manipular archivos de audio. Nos permite leer y escribir archivos con formato AU, WAV, MP3, entre otros. En el caso concreto de nuestra práctica, nos permite leer el archivo que queremos analizar (inputfile).  
+  **sox** - Es la abreviatura de Sound eXchange. Este comando se utiliza para manipular archivos de audio. Nos permite leer y escribir archivos con formato AU, WAV, MP3, entre otros. En el caso concreto de nuestra práctica, nos permite leer el archivo que queremos analizar (inputfile).  
        Con "-t" indicamos el tipo de formato que queremos en el fichero de salida, en este caso, queremos un fichero sin cabecera (raw).  
        Con "-e" indicamos cual será el tipo de datos a los que convertirá la señal de entrada. En nuestro caso a datos de tipo signed.  
        Con "-b" indicamos el número de bits que tendran los datos a la salida. En nuestro caso 16 bits.  
        Con "-" indicamos que el resultado se debe escribir en la salida estándar.
   
-  $X2X - El programa x2x permite la conversión entre distintos formatos de datos. Soporta múltiples tipos de datos como "-c" (char), "-s" (short), "-i" (int), "-l" (long) los cuales se definen en las opciones "+type1" y "+type2". En nuestro caso usamos "+sf" que corresponde a short (type1) float (type2). Dispone de otras opciones como "%format" (especifica el formato de la salida si el tipo 2 es ascii), "-r" (hace un redondeo del valor cuando un número real se sustituye por un entero) y "-o" (si los datos de la señal de entrada estan fuera del rango de los datos de salida, se recortan los de salida). Las dos últimas tienen false como valor por defecto.
+  **$X2X** - El programa x2x permite la conversión entre distintos formatos de datos. Soporta múltiples tipos de datos como "-c" (char), "-s" (short), "-i" (int), "-l" (long) los cuales se definen en las opciones "+type1" y "+type2". En nuestro caso usamos "+sf" que corresponde a short (type1) float (type2). Dispone de otras opciones como "%format" (especifica el formato de la salida si el tipo 2 es ascii), "-r" (hace un redondeo del valor cuando un número real se sustituye por un entero) y "-o" (si los datos de la señal de entrada estan fuera del rango de los datos de salida, se recortan los de salida). Las dos últimas tienen false como valor por defecto.
   
-  $FRAME - A partir de la señal que se ha obtenido a la entrada, el programa frame genera una señal a la salida  dividida en tramas de l muestras tomadas con un desplazamiento de p muestras. En nuestro caso, las tramas seran de 240 muestras desplazadas 80 muestras. También permite el uso de otras opciones como "-n" (para centrar. Es false por defecto).
+  **$FRAME** - A partir de la señal que se ha obtenido a la entrada, el programa frame genera una señal a la salida  dividida en tramas de l muestras tomadas con un desplazamiento de p muestras. En nuestro caso, las tramas seran de 240 muestras desplazadas 80 muestras. También permite el uso de otras opciones como "-n" (para centrar. Es false por defecto).
   
-  $WINDOW - Nos permite hacer un enventanado para cada una de las tramas. Este programa presenta diferentes opciones: "-l" (longitud de la trama de entrada), "-L" (longitud de la trama de salida),  "-n" (tipo de normalización, por ejemplo, por la potencia), "-w" (tipo de ventana que se utiliza. Por defecto utiliza Blackman, aunque se pueden utilizar Hamming, Hanning, Bartlett, Rectangular, etc...)
+  **$WINDOW** - Nos permite hacer un enventanado para cada una de las tramas. Este programa presenta diferentes opciones: "-l" (longitud de la trama de entrada), "-L" (longitud de la trama de salida),  "-n" (tipo de normalización, por ejemplo, por la potencia), "-w" (tipo de ventana que se utiliza. Por defecto utiliza Blackman, aunque se pueden utilizar Hamming, Hanning, Bartlett, Rectangular, etc...)
   
-  $LPC - Este programa hace un analisis LPC siguiendo el método de Levinson-Durbin. Las opciones que permite són "-l" (longitud de la trama), "-m" (orden del LPC) i "-f" (define el valor mínimo del determinante de la matriz normalizada).
+  **$LPC** - Este programa hace un analisis LPC siguiendo el método de Levinson-Durbin. Las opciones que permite són "-l" (longitud de la trama), "-m" (orden del LPC) i "-f" (define el valor mínimo del determinante de la matriz normalizada).
   
   Todos los programas incluyen también la opción "-h" la cual permité mostrar el mensaje de ayuda de cada uno de los programas.
 
