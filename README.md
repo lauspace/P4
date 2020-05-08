@@ -32,13 +32,13 @@ ejercicios indicados.
 - Analice el script `wav2lp.sh` y explique la misión de los distintos comandos, y sus opciones, involucrados
   en el *pipeline* principal (`sox`, `$X2X`, `$FRAME`, `$WINDOW` y `$LPC`).
   
-  La línea del código que tenemos es la siguiente:
+  La línea del código que tenemos es la siguiente:  
   sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $LPC -l 240 -m $lpc_order > $base.lp
   
-  sox - Es la abreviatura de Sound eXchange. Este comando se utiliza para manipular archivos de audio. Nos permite leer y escribir archivos con formato AU, WAV, MP3, entre otros. En el caso concreto de nuestra práctica, nos permite leer el archivo que queremos analizar (inputfile). 
-  Con "-t" indicamos el tipo de formato que queremos en el fichero de salida, en este caso, queremos un fichero sin cabecera (raw).
-  Con "-e" indicamos cual será el tipo de datos a los que convertirá la señal de entrada. En nuestro caso a datos de tipo signed.
-  Con "-b" indicamos el número de bits que tendran los datos a la salida. En nuestro caso 16 bits.
+  sox - Es la abreviatura de Sound eXchange. Este comando se utiliza para manipular archivos de audio. Nos permite leer y escribir archivos con formato AU, WAV, MP3, entre otros. En el caso concreto de nuestra práctica, nos permite leer el archivo que queremos analizar (inputfile).  
+  Con "-t" indicamos el tipo de formato que queremos en el fichero de salida, en este caso, queremos un fichero sin cabecera (raw).  
+  Con "-e" indicamos cual será el tipo de datos a los que convertirá la señal de entrada. En nuestro caso a datos de tipo signed.  
+  Con "-b" indicamos el número de bits que tendran los datos a la salida. En nuestro caso 16 bits.  
   Con "-" indicamos que el resultado se debe escribir en la salida estándar.
   
   $X2X - El programa x2x permite la conversión entre distintos formatos de datos. Soporta múltiples tipos de datos como "-c" (char), "-s" (short), "-i" (int), "-l" (long) los cuales se definen en las opciones "+type1" y "+type2". En nuestro caso usamos "+sf" que corresponde a short (type1) float (type2). Dispone de otras opciones como "%format" (especifica el formato de la salida si el tipo 2 es ascii), "-r" (hace un redondeo del valor cuando un número real se sustituye por un entero) y "-o" (si los datos de la señal de entrada estan fuera del rango de los datos de salida, se recortan los de salida). Las dos últimas tienen false como valor por defecto.
@@ -55,23 +55,23 @@ ejercicios indicados.
   
   Las líneas del código són las siguientes:
   
-  # Main command for feature extration
+  #Main command for feature extration  
   sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l   240 -L 240 | $LPC -l 240 -m $lpc_order > $base.lp
 
-  # Our array files need a header with the number of cols and rows:
-  ncol=$((lpc_order+1)) # lpc p =>  (gain a1 a2 ... ap) 
+  #Our array files need a header with the number of cols and rows:  
+  ncol=$((lpc_order+1)) # lpc p =>  (gain a1 a2 ... ap)  
   nrow=`$X2X +fa < $base.lp | wc -l | perl -ne 'print $_/'$ncol', "\n";'`
 
-  La primera pipeline hace las siguientes tareas:
-       - Convierte la señal de entrada a reales de coma flotantes (programa x2x con opción +sf) de 16 bits (programa sox con opción -b 16) y escribe el resultado en la salida estándar.
-       - Divide la señal de entrada en tramas de 240 muestras (programa frame con opción -l 240) con desplazamiento de ventana de 80 muestras (programa frame con opción -p 80).
-       - Multiplica cada trama por la ventana Blackman (programa window con opción sin especificar, ya que se usa la que hay por defecto). El tamaño de las tramas de entrada y salida es de 240 (programa window con opción -l 240 (entrada) -L 240 (salida).
-       - Calcula los lpc_order primeros coeficientes de lp (programa lpc con opción -m $lpc_order).
+  La primera pipeline hace las siguientes tareas:  
+       - Convierte la señal de entrada a reales de coma flotantes (programa x2x con opción +sf) de 16 bits (programa sox con opción -b 16) y escribe el resultado en la salida estándar.  
+       - Divide la señal de entrada en tramas de 240 muestras (programa frame con opción -l 240) con desplazamiento de ventana de 80 muestras (programa frame con opción -p 80).  
+       - Multiplica cada trama por la ventana Blackman (programa window con opción sin especificar, ya que se usa la que hay por defecto). El tamaño de las tramas de entrada y salida es de 240 (programa window con opción -l 240 (entrada) -L 240 (salida).  
+       - Calcula los lpc_order primeros coeficientes de lp (programa lpc con opción -m $lpc_order).  
        - Se redirecciona el resultado de la pipeline al fichero base.lp (con los comandos > $base.lp).
        
-  La segunda pipeline hace las siguientes tareas:
-       - Se definen el número de columnas que coincide con el número de coeficientes. Como en el primer elemento del predictor se almacena la ganancia de predicción, tendremos $lpc_order + 1 columnas.
-       - Se definen el número de filas que coincide con el número de tramas. Para obtenerlo convertimos la señal a texto (utilizamos sox +fa) y contamos el número de lineas (utilizamos wc -l).
+  La segunda pipeline hace las siguientes tareas:  
+       - Se definen el número de columnas que coincide con el número de coeficientes. Como en el primer elemento del predictor se almacena la ganancia de predicción, tendremos $lpc_order + 1 columnas.  
+       - Se definen el número de filas que coincide con el número de tramas. Para obtenerlo convertimos la señal a texto (utilizamos sox +fa) y contamos el número de lineas (utilizamos wc -l).  
        - FALTA EL COMANDO -PERL (PREGUNTAR A L'ALBINO)
 
   * ¿Por qué es conveniente usar este formato (u otro parecido)?
@@ -79,14 +79,12 @@ ejercicios indicados.
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales de predicción lineal
   (LPCC) en su fichero <code>scripts/wav2lpcc.sh</code>:
   
-  sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
-	$LPC -l 240 -m $lpc_order | $LPC2C -m $lpc_order -M 25 > $base.lp
+  sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $LPC -l 240 -m $lpc_order | $LPC2C -m $lpc_order -M 25 > $base.lp
 
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales en escala Mel (MFCC) en
   su fichero <code>scripts/wav2mfcc.sh</code>:
   
-  sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
-	$MFCC -l 240 -m $mfcc_order -s 8 -n 40 > $base.lp
+  sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $MFCC -l 240 -m $mfcc_order -s 8 -n 40 > $base.lp
 
 ### Extracción de características.
 
