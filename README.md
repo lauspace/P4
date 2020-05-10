@@ -72,7 +72,7 @@ ejercicios indicados.
   La segunda pipeline hace las siguientes tareas:  
        - Se definen el número de columnas que coincide con el número de coeficientes. Como en el primer elemento del predictor se almacena la ganancia de predicción, tendremos $lpc_order + 1 columnas.  
        - Se definen el número de filas que coincide con el número de tramas. Para obtenerlo convertimos la señal a texto (utilizamos sox +fa) y contamos el número de lineas (utilizamos wc -l).  
-       - FALTA EL COMANDO -PERL (PREGUNTAR A L'ALBINO)
+       - Se divide el número de valores almacenados en el fichero por el número de coeficientes de cada trama de señal (utilizamos -perl)
 
   * ¿Por qué es conveniente usar este formato (u otro parecido)?
   
