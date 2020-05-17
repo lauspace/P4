@@ -142,7 +142,7 @@ Complete el código necesario para entrenar modelos GMM.
   
   A continuación podemos ver la comparativa utilizando los modelos y loctuores 002 y 200:
   
-  <img src="Pics/Pic6.png" witdth="500" align="center"><img src="Pics/Pic3.png" witdth="500" align="center">
+  <img src="Pics/Pic6.png" witdth="200" height="300" align="center"><img src="Pics/Pic3.png" witdth="500" align="center">
   <img src="Pics/Pic4.png" witdth="500" align="center"><img src="Pics/Pic5.png" witdth="500" align="center">
   
   Podemos observar que los GMM que corresponden a un locutor reogen un gran porcentage de las muestras de la población, mientras que si ponemos un GMM con un locutor al que se corresponde, este porcentage de acierto disminuye y es de esta manera como podemos llegar a verificar si un locutor es el verdadero o es un impostor.
