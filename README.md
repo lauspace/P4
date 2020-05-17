@@ -162,11 +162,11 @@ Complete el código necesario para realizar reconociminto del locutor y optimice
   
   A continuación añadimos tres capturas que corroboran los valores de la tabla:
   
-    <img src="Pics/Pic10.png" witdth="500" align="center">
+    <img src="Pics/Pic10.jpeg" witdth="500" align="center">
 
-    <img src="Pics/Pic11.png" witdth="500" align="center">
+    <img src="Pics/Pic11.jpeg" witdth="500" align="center">
 
-    <img src="Pics/Pic12.png" witdth="500" align="center">
+    <img src="Pics/Pic12.jpeg" witdth="500" align="center">
   
 ### Verificación del locutor.
 
