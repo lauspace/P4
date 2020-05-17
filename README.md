@@ -127,7 +127,7 @@ Complete el código necesario para entrenar modelos GMM.
   
   A continuación podemos ver la comparativa utilizando los modelos y loctuores 002 y 200:
   
-  <img src="Pics/Pic2.png" witdth="500" align="center"><img src="Pics/Pic3.png" witdth="500" align="center">
+  <img src="Pics/Pic6.png" witdth="500" align="center"><img src="Pics/Pic3.png" witdth="500" align="center">
   <img src="Pics/Pic4.png" witdth="500" align="center"><img src="Pics/Pic5.png" witdth="500" align="center">
 
 ### Reconocimiento del locutor.
