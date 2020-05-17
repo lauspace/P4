@@ -156,10 +156,8 @@ Complete el código necesario para realizar reconociminto del locutor y optimice
   
   |                        | Parámetros    | Nerr         | Error_rate |
   |------------------------|:-------------:|:------------:|:----------:|
-  | &rho;<sub>x</sub>[4,3] | LP            |   91         |   11.85%   |
-  |------------------------|:-------------:|:------------:|:----------:|
+  | <sub>x</sub>[4,3]      | LP            |   91         |   11.85%   |
   |                        |  LPCC         |   29         |   3.69%    |
-  |------------------------|:-------------:|:------------:|:----------:|
   |                        |  MFCC         |   10         |   1.27%    |
 ### Verificación del locutor.
 
