@@ -93,18 +93,33 @@ ejercicios indicados.
 - Inserte una imagen mostrando la dependencia entre los coeficientes 2 y 3 de las tres parametrizaciones
   para una señal de prueba.
   
+                      LP
+  <img src="Pics/Pic7.png" witdth="500" align="center">
+  
+                      LPCC
+  <img src="Pics/Pic8.png" witdth="500" align="center">
+  
+                      MFCC
+  <img src="Pics/Pic9.png" witdth="500" align="center">
+  
   + ¿Cuál de ellas le parece que contiene más información?
+  
+  Como hemos visto en classe de teoría, la propiedad de la correlación es la que se refiere con el contenido de información de las parametrizaciones. Los coeficientes de LPCC estan más correlados que los de LP y a la vez los de MFCC lo están más que los de LPCC. Así que el orden de mayor a menor información sería MFCC, LPCC, LP.
 
 - Usando el programa <code>pearson</code>, obtenga los coeficientes de correlación normalizada entre los
   parámetros 2 y 3, y rellene la tabla siguiente con los valores obtenidos.
 
-  |                        | LP   | LPCC | MFCC |
-  |------------------------|:----:|:----:|:----:|
-  | &rho;<sub>x</sub>[2,3] |      |      |      |
+  |                        | LP            | LPCC         | MFCC       |
+  |------------------------|:-------------:|:------------:|:----------:|
+  | &rho;<sub>x</sub>[2,3] |  -0.854389    |   0.159463   |   -0.019   |
   
   + Compare los resultados de <code>pearson</code> con los obtenidos gráficamente.
   
+  Los resultados obtenidos son acordes con las gràficas que se han adjuntado antes. Tenemos LP con una correlación muy baja, seguidamente LPCC con una mayor pero aun menor que MFCC. Se comprueba la conclusión que MFCC tiene más información seguido de LPCC y LP
+  
 - Según la teoría, ¿qué parámetros considera adecuados para el cálculo de los coeficientes LPCC y MFCC?
+
+Segun la teoria vista en clase, el número de coeficientes adecuados para el cálculo de coeficientes de LPCC es entre 8 y 12 mientras que para MFCC es de 14 a 18
 
 ### Entrenamiento y visualización de los GMM.
 
@@ -138,7 +153,14 @@ Complete el código necesario para realizar reconociminto del locutor y optimice
 
 - Inserte una tabla con la tasa de error obtenida en el reconocimiento de los locutores de la base de datos
   SPEECON usando su mejor sistema de reconocimiento para los parámetros LP, LPCC y MFCC.
-
+  
+  |                        | Parámetros    | Nerr         | Error_rate |
+  |------------------------|:-------------:|:------------:|:----------:|
+  | &rho;<sub>x</sub>[4,3] | LP            |   91         |   11.85%   |
+  |------------------------|:-------------:|:------------:|:----------:|
+  |                        |  LPCC         |   29         |   3.69%    |
+  |------------------------|:-------------:|:------------:|:----------:|
+  |                        |  MFCC         |   10         |   1.27%    |
 ### Verificación del locutor.
 
 Complete el código necesario para realizar verificación del locutor y optimice sus parámetros.
